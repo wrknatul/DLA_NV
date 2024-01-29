@@ -1,5 +1,5 @@
 {
-    "name": "final",
+    "name": "train",
     "n_gpu": 1,
     "preprocessing": {
       "sr": 22050
