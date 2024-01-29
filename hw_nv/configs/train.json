@@ -1,0 +1,90 @@
+{
+    "name": "final",
+    "n_gpu": 1,
+    "preprocessing": {
+      "sr": 22050
+    },
+    "arch": {
+      "type": "HiFiGANModel",
+      "args": {
+        "mpd_params": {
+          "sub_params": {}
+        },
+        "msd_params": {
+          "sub_params": {}
+        },
+        "generator_params": {}
+      }
+    },
+    "mel_spec": {
+      "sr": 22050,
+      "win_length": 1024,
+      "hop_length": 256,
+      "n_fft": 1024,
+      "f_min": 0,
+      "f_max": 8000,
+      "n_mels": 80,
+      "power": 1.0,
+      "pad_value": -11.5129251
+    },
+    "data": {
+      "train": {
+        "batch_size": 16,
+        "num_workers": 5,
+        "dataset": {
+          "type": "LJSpeechDataset",
+          "args": {
+            "cut_audio": 8192
+          }
+        }
+      }
+    },
+    "optimizer_disc": {
+      "type": "AdamW",
+      "args": {
+        "lr": 2e-4,
+        "weight_decay": 0.01,
+        "betas": [0.8, 0.99]
+      }
+    },
+    "optimizer_gen": {
+      "type": "AdamW",
+      "args": {
+        "lr": 2e-4,
+        "weight_decay": 0.01,
+        "betas": [0.8, 0.99]
+      }
+    },
+    "loss": {
+      "type": "HiFiGANLoss",
+      "args": {}
+    },
+    "lr_scheduler_disc": {
+      "type": "StepLR",
+      "args": {
+        "step_size": 40,
+        "gamma": 0.999
+      }
+    },
+    "lr_scheduler_gen": {
+      "type": "StepLR",
+      "args": {
+        "step_size": 40,
+        "gamma": 0.999
+      }
+    },
+    "trainer": {
+      "epochs": 1000,
+      "save_dir": "saved/",
+      "save_period": 10,
+      "verbosity": 2,
+      "monitor": "off",
+      "early_stop": 100,
+      "visualize": "wandb",
+      "wandb_project": "nv_project",
+      "wandb_name": "final",
+      "len_epoch": 1000,
+      "log_step": 100,
+      "grad_norm_clip": 100
+    }
+  }
