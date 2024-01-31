@@ -82,7 +82,7 @@
       "early_stop": 1000,
       "visualize": "wandb",
       "wandb_project": "nv_project",
-      "wandb_name": "final",
+      "wandb_name": "test_proof",
       "len_epoch": 1000,
       "log_step": 1000,
       "grad_norm_clip": 1000
